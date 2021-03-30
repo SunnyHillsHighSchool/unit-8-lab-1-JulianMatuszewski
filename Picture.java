@@ -367,8 +367,40 @@ public class Picture
   }
 
    ////////////////////// methods ///////////////////////////////////////
+//Written by: Julian Matuszewski
+//This method will mirror an image form left to right
+public void mirrorLeftToRight () {
+	//create array of 2D pixles
+	Pixel[][] pixels = this.getPixels2D();
+	//create left piexel variables
+	Pixel leftPixel = null;
+	//create right pixel variables
+	Pixel rightPixel = null;
+	//loop through rows
+	for (int row = 0; row<pixels.length; row++) {
+		//loop through columns
+		for (int col = 0; col < pixels[0].length/2;col++) {
+			//assign values to the pixel variables
+			leftPixel = pixels[row][col];
+			rightPixel = pixels[row][pixels[0].length - 1 - col];
+			//copy the lieft pixels color to the right pixel
+			rightPixel.setColor(leftPixel.getColor());
+		}
+	}
+}
 
-   
-
+//Written by: Julian Matuszewski
+//This method will mirror the top part of the image to the bottom
+public void mirrorVertical() {
+	//just to get the 2D array
+	Pixel[][] pixels = this.getPixels2D();
+	for (int i = 0; i < pixels.length/2; i++) {
+		//iterates through the top rows
+		for (int j = 0; j < pixels[i].length; j++) {
+			//sets all the pixels in the top rows to the bottom ones
+			pixels[pixels.length -1 -i][j].setColor(pixels[i][j].getColor());
+		}
+	}	
+}
 
 } // this } is the end of class Picture, put all new methods before this
